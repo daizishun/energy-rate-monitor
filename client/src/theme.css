@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@import "tailwindcss-safe-area";
+
+@theme {
+  --text-xs: 12px;
+  --text-xs--line-height: 16px;
+  --text-sm: 14px;
+  --text-sm--line-height: 20px;
+  --text-base: 16px;
+  --text-base--line-height: 24px;
+  --text-lg: 18px;
+  --text-lg--line-height: 28px;
+  --text-xl: 20px;
+  --text-xl--line-height: 28px;
+  --text-2xl: 24px;
+  --text-2xl--line-height: 32px;
+  --text-3xl: 30px;
+  --text-3xl--line-height: 36px;
+  --text-4xl: 36px;
+  --text-4xl--line-height: 40px;
+  --text-5xl: 48px;
+  --text-5xl--line-height: 52px;
+}
+
+:root {
+  color-scheme: light dark;
+  --bg: #fafaf7;
+  --surface: #ffffff;
+  --surface-alt: #f3f4ef;
+  --text: #1c2420;
+  --dim: #5f6d66;
+  --border: #e3e7e1;
+  --accent: #0b5a4a;
+  --accent-soft: #e3efe9;
+  --gas: #c25e14;
+  --gas-soft: #faeee1;
+  --danger: #b3372a;
+  --radius: 10px;
+  --space-surface: var(--surface);
+  --space-surface-alt: var(--surface-alt);
+  --space-muted: var(--dim);
+  --space-border: var(--border);
+  --space-accent: var(--accent);
+  --font-display: ui-serif, "Songti SC", "Noto Serif SC", Georgia, serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121613;
+    --surface: #1b201c;
+    --surface-alt: #232823;
+    --text: #eef2ee;
+    --dim: #9db0a5;
+    --border: #2e362f;
+    --accent: #4cc2a5;
+    --accent-soft: #1d2f29;
+    --gas: #eda154;
+    --gas-soft: #332619;
+    --danger: #e07a6a;
+  }
+}
+
+/* Phone tap targets: at least 32px tall. */
+@layer base {
+  button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]) {
+    min-height: 2rem;
+  }
+}
+
+/* Standalone replacements for the platform SDK's container styles
+ * (previously imported from @hatch/space-sdk/client): safe-area
+ * inset variables and the app-root sizing/layout rules. */
+:root {
+  --twsa-safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --twsa-safe-area-inset-right: env(safe-area-inset-right, 0px);
+  --twsa-safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --twsa-safe-area-inset-left: env(safe-area-inset-left, 0px);
+}
+
+html,
+[data-generated-space-root] {
+  height: 100%;
+  min-height: 100%;
+}
+
+[data-generated-space-root] {
+  inset: 0;
+  overflow: auto;
+  position: fixed;
+  scrollbar-width: none;
+}
+
+.hatch-space-root[data-hatch-space-root] {
+  --hatch-space-bottom-padding: calc(
+    var(--bottom-padding, 0px) + env(safe-area-inset-bottom, 0px)
+  );
+  box-sizing: border-box;
+  min-height: calc(100dvh + var(--hatch-space-bottom-padding));
+  padding-top: var(--header-height, 0px);
+  padding-bottom: var(--hatch-space-bottom-padding);
+}
